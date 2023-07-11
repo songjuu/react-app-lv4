@@ -1,0 +1,22 @@
+{
+  "todos": [
+    {
+      "id": "RkYQUoAjU",
+      "name": "홍길동",
+      "title": "react 공부하기",
+      "content": "공부 30분하기"
+    },
+    {
+      "id": "ykekcOb-Y",
+      "name": "홍길순",
+      "title": "react-query 강의 듣기",
+      "content": "강의 완강 목표!"
+    },
+    {
+      "id": "ne-yxXzn_",
+      "name": "강아지",
+      "title": "thunk 복습하고 물어보기",
+      "content": "페어 프로그래밍하기"
+    }
+  ]
+}
