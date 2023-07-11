@@ -39,11 +39,12 @@ function AddList() {
       title,
       content,
     };
-
+    //TODO:빈칸 유효성검사 추가하기
     mutation.mutate(newTodo);
 
     navigate("/list");
   };
+
   return (
     <LayoutDiv>
       <StyleFormTitle>작성자</StyleFormTitle>
