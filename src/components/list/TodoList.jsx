@@ -8,6 +8,8 @@ import {
   StyleTodo,
   StyleTodoTitle,
 } from "../../styles/style.todolist";
+import Background from "../../styles/style.loading";
+import Spinner from "../../styles/spinner.gif";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function TodoList() {
@@ -28,7 +30,11 @@ function TodoList() {
   const { isLoading, isError, data } = useQuery("todos", getTodos);
   // console.log("data💛💛", data);
   if (isLoading) {
-    return <h1>할 일 목록을 가져오고 있습니다!</h1>;
+    return (
+      <Background>
+        <img src={Spinner} alt="로딩중" width="5%" />
+      </Background>
+    );
   }
   if (isError) {
     return <h1>할 일 목록을 가져오지 못했습니다!</h1>;
