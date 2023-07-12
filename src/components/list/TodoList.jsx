@@ -37,7 +37,7 @@ function TodoList() {
     );
   }
   if (isError) {
-    return <h1>할 일 목록을 가져오지 못했습니다!</h1>;
+    return <Background>할 일 목록을 가져오지 못했습니다😥</Background>;
   }
 
   //삭제 버튼

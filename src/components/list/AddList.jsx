@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { LayoutDiv, StyleInputButton } from "../../styles/style.common";
 import {
   StyleFormTitle,
@@ -69,8 +69,11 @@ function AddList() {
         onChange={onHandlerContentInput}
       ></StyleTextArea>
       <div>
-        <StyleInputButton onClick={handleSubmitButtonClick}>
+        <StyleInputButton mt="50px" onClick={handleSubmitButtonClick}>
           추가 하기
+        </StyleInputButton>
+        <StyleInputButton mt="20px" onClick={() => navigate("/list")}>
+          할 일 목록 보러가기
         </StyleInputButton>
       </div>
     </LayoutDiv>
