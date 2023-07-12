@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getDetailTodo } from "../../api/todos";
-import { useQuery } from "react-query";
+import { getDetailTodo, updateTodo } from "../../api/todos";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import useInput from "../../hooks/useInput";
 import { LayoutDiv, StyleInputButton } from "../../styles/style.common";
 import {
   StyleContentDiv,
@@ -15,13 +16,27 @@ import Background from "../../styles/style.loading";
 function DetailTodo() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [isUpdate, setIsUpdate] = useState(false);
 
-  //할일 조회
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [updateTitle, onUpdateTitleInput] = useInput();
+  const [updateContent, onUpdateContentInput] = useInput();
+
+  //수정을 위한 리액트 쿼리
+  const queryClient = useQueryClient();
+  const mutation = useMutation(updateTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+    },
+    onError: () => {
+      return <h1>에러입니다!!</h1>;
+    },
+  });
+
+  //할 일 조회
   const { isLoading, isError, data } = useQuery("todo", () =>
     getDetailTodo(id)
   );
-  // console.log("⏩⏩data", data);
+
   if (isLoading) {
     return (
       <Background>
@@ -33,13 +48,19 @@ function DetailTodo() {
     return <Background>할 일을 가져오지 못했습니다😥</Background>;
   }
 
-  //수정 할 시 UI 변경을 위한 것
-  const isUpdateTodo = () => {
-    setIsUpdate(!isUpdate);
-    console.log("!업데이트 유무!", isUpdate);
-  };
-
   //할 일 수정
+  const handleUpdateButtonClick = () => {
+    setIsUpdate(!isUpdate);
+    // console.log("isUpdate=>>", isUpdate);
+
+    const newUpdateTodo = {
+      ...data,
+      title: updateTitle,
+      content: updateContent,
+    };
+
+    mutation.mutate(newUpdateTodo);
+  };
 
   return (
     <LayoutDiv>
@@ -60,15 +81,23 @@ function DetailTodo() {
       {isUpdate && (
         <>
           <StyleDiv>
-            <StyleUpdateInput w="40%"></StyleUpdateInput>
+            <StyleUpdateInput
+              width="40%"
+              value={updateTitle}
+              onChange={onUpdateTitleInput}
+            ></StyleUpdateInput>
           </StyleDiv>
           <div>작성자: {data.name}</div>
-          <StyleUpdateInput w="100%" h="350px"></StyleUpdateInput>
+          <StyleUpdateInput
+            height="350px"
+            value={updateContent}
+            onChange={onUpdateContentInput}
+          ></StyleUpdateInput>
         </>
       )}
 
       <div>
-        <StyleInputButton mt="50px" onClick={isUpdateTodo}>
+        <StyleInputButton onClick={handleUpdateButtonClick}>
           {isUpdate ? "완료 하기" : "수정 하기"}
         </StyleInputButton>
       </div>

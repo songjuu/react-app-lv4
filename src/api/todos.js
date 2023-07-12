@@ -21,9 +21,17 @@ const getDetailTodo = async (postId) => {
   return response.data;
 };
 
+//할일 수정하기
+const updateTodo = async (post) => {
+  await axios.patch(
+    `${process.env.REACT_APP_SERVER_URL}/todos/${post.id}`,
+    post
+  );
+};
+
 //할일 삭제하기
 const deleteTodo = async (postId) => {
   await axios.delete(`${process.env.REACT_APP_SERVER_URL}/todos/${postId}`);
 };
 
-export { getTodos, addTodo, deleteTodo, getDetailTodo };
+export { getTodos, addTodo, deleteTodo, getDetailTodo, updateTodo };

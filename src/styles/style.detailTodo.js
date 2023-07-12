@@ -29,8 +29,8 @@ const StylePrevButton = styled.div`
 
 const StyleUpdateInput = styled.textarea`
   margin-top: 20px;
-  width: ${(props) => props.w};
-  height: ${(props) => props.h};
+  width: ${(props) => props.width || "100%"};
+  height: ${(props) => props.height};
   border: 2px solid rgb(221, 221, 221);
   border-radius: 8px;
   display: flex;

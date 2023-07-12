@@ -30,7 +30,7 @@ const StyleInputButton = styled.button`
   background-color: rgb(255, 255, 255);
   border-radius: 8px;
   border: 1px solid rgb(238, 238, 238);
-  margin-top: ${(props) => props.mt};
+  margin-top: ${(props) => props.margin || "50px"};
   cursor: pointer;
 `;
 export { LayoutDiv, StyleButton, StyleInputButton };

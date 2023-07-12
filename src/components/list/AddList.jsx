@@ -33,13 +33,17 @@ function AddList() {
 
   //할 일 추가
   const handleSubmitButtonClick = () => {
+    if (!title || !content || !name) {
+      return alert("모든 내용을 입력해주세요!");
+    }
+
     const newTodo = {
       id: shortid.generate(),
       name,
       title,
       content,
     };
-    //TODO:빈칸 유효성검사 추가하기
+
     mutation.mutate(newTodo);
 
     navigate("/list");
@@ -69,10 +73,10 @@ function AddList() {
         onChange={onHandlerContentInput}
       ></StyleTextArea>
       <div>
-        <StyleInputButton mt="50px" onClick={handleSubmitButtonClick}>
+        <StyleInputButton onClick={handleSubmitButtonClick}>
           추가 하기
         </StyleInputButton>
-        <StyleInputButton mt="20px" onClick={() => navigate("/list")}>
+        <StyleInputButton margin="20px" onClick={() => navigate("/list")}>
           할 일 목록 보러가기
         </StyleInputButton>
       </div>
