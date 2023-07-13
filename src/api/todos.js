@@ -4,7 +4,6 @@ import axios from "axios";
 //할일 목록 가져오기
 const getTodos = async () => {
   const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/todos`);
-  // console.log("response🟡🟡", response);
   return response.data;
 };
 

@@ -29,7 +29,6 @@ function AddList() {
   const [name, onHandlerNameInput] = useInput();
   const [title, onHandlerTitleInput] = useInput();
   const [content, onHandlerContentInput] = useInput();
-  // console.log(name, title, content);
 
   //할 일 추가
   const handleSubmitButtonClick = () => {
