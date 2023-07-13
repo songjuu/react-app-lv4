@@ -28,7 +28,7 @@ function TodoList() {
 
   //전체 할 일 목록 조회, 쿼리 키 조심
   const { isLoading, isError, data } = useQuery("todos", getTodos);
-  // console.log("data💛💛", data);
+
   if (isLoading) {
     return (
       <Background>
