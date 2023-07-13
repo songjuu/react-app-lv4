@@ -21,6 +21,8 @@ function DetailTodo() {
   const [updateTitle, onUpdateTitleInput] = useInput();
   const [updateContent, onUpdateContentInput] = useInput();
 
+  // console.log("updateTitle!!!", updateTitle);
+
   //수정을 위한 리액트 쿼리
   const queryClient = useQueryClient();
   const mutation = useMutation(updateTodo, {
@@ -32,7 +34,7 @@ function DetailTodo() {
     },
   });
 
-  //할 일 조회
+  //할 일 조회, 쿼리 키 확인
   const { isLoading, isError, data } = useQuery("todo", () =>
     getDetailTodo(id)
   );
@@ -52,6 +54,8 @@ function DetailTodo() {
   const handleUpdateButtonClick = () => {
     setIsUpdate(!isUpdate);
     // console.log("isUpdate=>>", isUpdate);
+    onUpdateTitleInput({ target: { value: data.title } });
+    onUpdateContentInput({ target: { value: data.content } });
 
     const newUpdateTodo = {
       ...data,

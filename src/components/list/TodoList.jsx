@@ -2,7 +2,7 @@ import React from "react";
 import { deleteTodo, getTodos } from "../../api/todos";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { LayoutDiv } from "../../styles/style.common";
+import { LayoutDiv, StyleInputButton } from "../../styles/style.common";
 import {
   StyleSelectButton,
   StyleTodo,
@@ -26,7 +26,7 @@ function TodoList() {
     },
   });
 
-  //목록 조회
+  //전체 할 일 목록 조회, 쿼리 키 조심
   const { isLoading, isError, data } = useQuery("todos", getTodos);
   // console.log("data💛💛", data);
   if (isLoading) {
@@ -80,6 +80,9 @@ function TodoList() {
             </StyleTodo>
           );
         })}
+        <StyleInputButton margin="20px" onClick={() => navigate("/list/add")}>
+          할 일 작성하기
+        </StyleInputButton>
       </div>
     </LayoutDiv>
   );

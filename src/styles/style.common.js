@@ -6,6 +6,7 @@ const LayoutDiv = styled.div`
   max-width: 1300px;
   margin: 0px auto;
   padding: 0px 40px;
+  margin-top: 60px;
 `;
 
 //----------------------------------------------------------

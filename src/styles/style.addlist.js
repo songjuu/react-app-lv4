@@ -13,7 +13,7 @@ const StyleFormTitle = styled.div`
   font-size: 25px;
   font-weight: 600;
   margin-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 40px;
 `;
 
 const StyleTextArea = styled.textarea`
