@@ -3,12 +3,14 @@ import { LayoutDiv } from "../../styles/style.common";
 
 function CommentInput() {
   return (
-    <LayoutDiv>
-      <form>
-        <input />
-        <input />
-      </form>
-    </LayoutDiv>
+    <>
+      <LayoutDiv>
+        <form>
+          <input />
+          <input />
+        </form>
+      </LayoutDiv>
+    </>
   );
 }
 
