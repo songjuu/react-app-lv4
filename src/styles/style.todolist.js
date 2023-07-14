@@ -7,7 +7,7 @@ const StyleTodo = styled.div`
   border-radius: 12px;
   width: 100%;
   margin: 15px;
-  height: 90px;
+  height: ${(props) => props.height || "90px"};
   padding: 0px 12px;
 `;
 

@@ -5,6 +5,12 @@ import { addComment } from "../../api/comments";
 import { useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import shortid from "shortid";
+import {
+  StyleCommentButton,
+  StyleCommentForm,
+  StyleCommentInput,
+  StyleInputLabel,
+} from "../../styles/style.comment";
 
 function CommentInput() {
   const { id } = useParams();
@@ -46,21 +52,24 @@ function CommentInput() {
 
   return (
     <LayoutDiv>
-      <form>
-        <label>
-          닉네임:
-          <input
-            type="text"
-            value={nickname}
-            onChange={onHandlerNicknameInput}
-          />
-        </label>
-        <label>
-          내용:
-          <input type="text" value={comment} onChange={onHandlerCommentInput} />
-        </label>
-        <button onClick={commentSubmitButtonClick}>댓글 추가</button>
-      </form>
+      <StyleCommentForm>
+        <StyleInputLabel>닉네임:</StyleInputLabel>
+        <StyleCommentInput
+          type="text"
+          value={nickname}
+          onChange={onHandlerNicknameInput}
+        />
+        <StyleInputLabel>내용:</StyleInputLabel>
+        <StyleCommentInput
+          type="text"
+          value={comment}
+          onChange={onHandlerCommentInput}
+          width="35%"
+        />
+        <StyleCommentButton onClick={commentSubmitButtonClick}>
+          댓글 추가
+        </StyleCommentButton>
+      </StyleCommentForm>
     </LayoutDiv>
   );
 }
