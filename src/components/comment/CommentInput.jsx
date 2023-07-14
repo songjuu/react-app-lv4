@@ -16,7 +16,7 @@ function CommentInput() {
   const { id } = useParams();
   // console.log("id!!!", id);
 
-  //리액트 쿼리
+  //댓글 추가 리액트 쿼리
   const queryClient = useQueryClient();
   const mutation = useMutation(addComment, {
     onSuccess: () => {
