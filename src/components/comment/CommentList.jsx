@@ -5,8 +5,11 @@ import { deleteComment, getComments } from "../../api/comments";
 import Background from "../../styles/style.loading";
 import Spinner from "../../styles/spinner.gif";
 import { StyleTodo } from "../../styles/style.todolist";
+import { useParams } from "react-router-dom";
 
 function CommentList() {
+  const { id } = useParams();
+
   //댓글 삭제 쿼리
   const queryClient = useQueryClient();
   const mutation = useMutation(deleteComment, {
@@ -44,23 +47,25 @@ function CommentList() {
 
   return (
     <LayoutDiv>
-      {data.map((item) => {
-        return (
-          <StyleTodo key={item.id}>
-            <div>닉네임: {item.nickname}</div>
-            <div>내용: {item.comment}</div>
-            <div>
-              <button
-                onClick={() => {
-                  commentDeleteButtonClick(item.id);
-                }}
-              >
-                삭제
-              </button>
-            </div>
-          </StyleTodo>
-        );
-      })}
+      {data
+        .filter((item) => item.postId === id)
+        .map((item) => {
+          return (
+            <StyleTodo key={item.id}>
+              <div>닉네임: {item.nickname}</div>
+              <div>내용: {item.comment}</div>
+              <div>
+                <button
+                  onClick={() => {
+                    commentDeleteButtonClick(item.id);
+                  }}
+                >
+                  삭제
+                </button>
+              </div>
+            </StyleTodo>
+          );
+        })}
     </LayoutDiv>
   );
 }
